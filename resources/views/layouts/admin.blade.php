@@ -10,14 +10,14 @@
     <meta name="author" content="">
 
     <!-- Custom fonts for this template-->
-    <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/e33bd8b04f.js" crossorigin="anonymous"></script>
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-{{--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">--}}
+    {{--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">--}}
     <link href="{{asset('vendor/summernote/summernote.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('vendor/summernote/summernote.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('vendor/file input/css/fileinput.min.css')}}" rel="stylesheet" type="text/css" >
+    <link href="{{asset('vendor/file input/css/fileinput.min.css')}}" rel="stylesheet" type="text/css">
 
     <!-- Custom styles for this template-->
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
@@ -29,7 +29,7 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
 @include('sweetalert::alert')
-    <!-- Sidebar -->
+<!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
@@ -44,10 +44,30 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item">
+        <li class="nav-item {{request()->routeIs('admin.dashboard')?'active':''}}">
             <a class="nav-link" href="{{route('admin.dashboard')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
+        </li>
+        <li class="nav-item {{request()->routeIs('admin.category.index')?'active':''}}">
+            <a class="nav-link " href="{{route('admin.category.index')}}">
+                <i class="fas fa-file-archive"></i>
+                <span>Categories</span></a>
+        </li>
+        <li class="nav-item {{request()->routeIs('admin.tag.index')?'active':''}}">
+            <a class="nav-link " href="{{route('admin.tag.index')}}">
+                <i class="fa-solid fa-tags"></i>
+                <span>Tags</span></a>
+        </li>
+        <li class="nav-item {{request()->routeIs('admin.coupon.index')?'active':''}}">
+            <a class="nav-link " href="{{route('admin.coupon.index')}}">
+                <i class="fa-solid fa-percent"></i>
+                <span>Coupons</span></a>
+        </li>
+        <li class="nav-item {{request()->routeIs('admin.product.index')?'active':''}}">
+            <a class="nav-link " href="{{route('admin.product.index')}}">
+                <i class="fa-solid fa-shop"></i>
+                <span>Products</span></a>
         </li>
 
         <!-- Divider -->
@@ -65,22 +85,6 @@
         <div class="sidebar-heading">
             Addons
         </div>
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item active">
-            <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-               aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Pages</span>
-            </a>
-            <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
-                 data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Login Screens:</h6>
-
-                </div>
-            </div>
-        </li>
 
 
         <!-- Divider -->
