@@ -6,7 +6,7 @@
         <div class="card-header py-3 d-flex">
             <h6 class="m-0 font-weight-bold text-primary"> {{$product->name}} </h6>
             <div class="ml-auto">
-                <a href="{{ route('admin.product.create') }}" class="btn btn-primary d-flex px-2">
+                <a href="{{ route('admin.product.attribute.create',$product->id) }}" class="btn btn-primary d-flex px-2">
                     <span class="icon text-white-50">
                         <em class="fa fa-plus"></em>
                     </span>
@@ -51,7 +51,9 @@
 
                     <td>
                         <div class="btn-group ">
-                            <a href="{{ route('admin.product.attribute.edit', $attribute->id) }}" class="btn btn-primary">
+{{--                            @dd($attribute->id);--}}
+                            <a href="{{ route('admin.product.attribute.edit', [$product->id,$attribute->id]) }}"
+                               class="btn btn-primary">
                                 <i class="fa fa-edit"></i>
                             </a>
                             <a href="javascript:void(0);"
@@ -59,8 +61,11 @@
                                class="btn btn-danger">
                                 <em class="fa fa-trash danger"></em>
                             </a>
-                            <form action="{{ route('admin.product.attribute.delete', $attribute->id) }}" method="post"
+                            <form action="{{ route('admin.product.attribute.delete',[$product->id ,$attribute->id]) }}"
+                                  method="post"
+
                                   id="delete-product-{{ $attribute->id }}" class="d-none">
+
                                 @csrf
                             </form>
 

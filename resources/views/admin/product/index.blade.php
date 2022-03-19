@@ -38,7 +38,7 @@
 
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->category->name }}</td>
-                    <td>@foreach($product->sizes() as $size)
+                    <td class="col-3">@foreach($product->sizes() as $size)
                             <span class="bg bg-primary p-2 rounded m-1 text-light">
                             {{$size}}
                             </span>
@@ -77,7 +77,6 @@
                             <form action="{{ route('admin.product.delete', $product->id) }}" method="post"
                                   id="delete-product-product-{{ $product->id }}" class="d-none">
                                 @csrf
-                                @method('DELETE')
                             </form>
 
                         </div>

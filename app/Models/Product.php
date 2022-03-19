@@ -9,6 +9,8 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -23,10 +25,12 @@ class Product extends Model
     {
         return array_unique($this->attributes()->pluck('size')->toArray());
     }
+
     public function totalStock()
     {
         return $this->attributes()->pluck('stock')->sum();
     }
+
     public function colors()
     {
         return array_unique($this->attributes()->pluck('color')->toArray());
@@ -34,12 +38,22 @@ class Product extends Model
 
     public function status()
     {
-        return $this->status?'Active':'InActive';
+        return $this->status ? 'Active' : 'InActive';
     }
 
     public function createdAt()
     {
         return $this->created_at->diffForHumans();
+    }
+
+    public function media()
+    {
+        return $this->hasMany(Media::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 
 }

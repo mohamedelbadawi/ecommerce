@@ -21,7 +21,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
-
+    @yield('styles')
 </head>
 
 <body id="page-top">
@@ -49,6 +49,7 @@
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
+        @role('manager')
         <li class="nav-item {{request()->routeIs('admin.category.index')?'active':''}}">
             <a class="nav-link " href="{{route('admin.category.index')}}">
                 <i class="fas fa-file-archive"></i>
@@ -69,6 +70,48 @@
                 <i class="fa-solid fa-shop"></i>
                 <span>Products</span></a>
         </li>
+        <li class="nav-item {{request()->routeIs('admin.user.index')?'active':''}}">
+            <a class="nav-link " href="{{route('admin.user.index')}}">
+                <i class="fa-solid fa-user-group"></i>
+                <span>Users</span></a>
+        </li>
+
+
+        @endrole
+
+
+        @role('supervisor')
+        <li class="nav-item {{request()->routeIs('admin.category.index')?'active':''}}">
+            <a class="nav-link " href="{{route('admin.category.index')}}">
+                <i class="fas fa-file-archive"></i>
+                <span>Categories</span></a>
+        </li>
+        <li class="nav-item {{request()->routeIs('admin.tag.index')?'active':''}}">
+            <a class="nav-link " href="{{route('admin.tag.index')}}">
+                <i class="fa-solid fa-tags"></i>
+                <span>Tags</span></a>
+        </li>
+        <li class="nav-item {{request()->routeIs('admin.coupon.index')?'active':''}}">
+            <a class="nav-link " href="{{route('admin.coupon.index')}}">
+                <i class="fa-solid fa-percent"></i>
+                <span>Coupons</span></a>
+        </li>
+        <li class="nav-item {{request()->routeIs('admin.product.index')?'active':''}}">
+            <a class="nav-link " href="{{route('admin.product.index')}}">
+                <i class="fa-solid fa-shop"></i>
+                <span>Products</span></a>
+        </li>
+
+        @endrole
+
+
+        <li class="nav-item">
+            <a class="nav-link " href="{{route('admin.logout')}}">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span> logout </span>
+            </a>
+        </li>
+
 
         <!-- Divider -->
         <hr class="sidebar-divider">

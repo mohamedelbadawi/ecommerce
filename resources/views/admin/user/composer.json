@@ -1,0 +1,14 @@
+{
+    "name": "vendor_name/user",
+    "description": "description",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "redam",
+            "email": "email@example.com"
+        }
+    ],
+    "require": {
+    }
+}
