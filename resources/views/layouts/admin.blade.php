@@ -75,6 +75,11 @@
                 <i class="fa-solid fa-user-group"></i>
                 <span>Users</span></a>
         </li>
+        <li class="nav-item {{request()->routeIs('admin.user.index')?'active':''}}">
+            <a class="nav-link " href="{{route('admin.user.index')}}">
+                <i class="fa-solid fa-user-gear"></i>
+                <span>Admins</span></a>
+        </li>
 
 
         @endrole

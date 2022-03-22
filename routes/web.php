@@ -36,8 +36,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
 
 
-
-    Route::group(['middleware' => ['auth:admin','role:supervisor|manager']], function () {
+    Route::group(['middleware' => ['auth:admin', 'role:supervisor|manager']], function () {
 
 //  --------------------------------------- Categories ---------------------------------------------------------
         Route::get('/categories', [CategoryController::class, 'index'])->name('admin.category.index');
@@ -83,7 +82,15 @@ Route::prefix('admin')->group(function () {
         Route::get('users/', [UserController::class, 'index'])->name('admin.user.index');
         Route::get('users/create', [UserController::class, 'createUser'])->name('admin.user.create');
         Route::get('users/destroy/{user}', [UserController::class, 'delete'])->name('admin.user.delete');
+        // ------------------- admins -----------------------
+        Route::get('/admins/', [AdminController::class, 'index'])->name('admin.index');
+        Route::get('/admins/create', [AdminController::class, 'create'])->name('admin.create');
+        Route::get('/admins/delete/{admin}', [AdminController::class, 'destroy'])->name('admin.delete');
+        Route::get('/admins/edit/{admin}', [AdminController::class, 'edit'])->name('admin.edit');
+        Route::PATCH('/admins/update/{admin}', [AdminController::class, 'update'])->name('admin.update');
+        Route::post('/admins/store', [AdminController::class, 'store'])->name('admin.store');
     });
+
 
 });
 
