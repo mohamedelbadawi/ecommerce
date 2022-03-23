@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequest;
+use App\Http\Requests\updateAccountRequest;
 use App\Models\Admin;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Role;
 
@@ -82,5 +85,29 @@ class AdminController extends Controller
         }
 
         return redirect()->route('admin.index');
+    }
+
+    public function editAccountSettings()
+    {
+        return view('admin.account.account_settings');
+    }
+
+    public function updateAccountSettings(updateAccountRequest $request)
+    {
+        $currentPassword = auth('admin')->user()->password;
+
+        if ((Hash::check($request->oldpassword, $currentPassword))) {
+            if (!Hash::check($request->newpassword, $currentPassword)) {
+                $user = Admin::find(Auth::user()->id);
+//                dd($user);
+                $user->password = bcrypt($request->newpassword);
+                Admin::where('id', Auth::user()->id)->update(array('password' => $user->password));
+                Alert::success('Done', 'password updated successfully');
+            } else {
+                Alert::error('Error', 'old password can\'t be a new password');
+                return redirect()->route('admin.edit_settings');
+            }
+        }
+        return redirect()->route('admin.dashboard');
     }
 }

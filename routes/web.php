@@ -92,6 +92,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/admins/edit/{admin}', [AdminController::class, 'edit'])->name('admin.edit');
         Route::PATCH('/admins/update/{admin}', [AdminController::class, 'update'])->name('admin.update');
         Route::post('/admins/store', [AdminController::class, 'store'])->name('admin.store');
+        Route::get('/admins/edit_settings', [AdminController::class, 'editAccountSettings'])->name('admin.edit_settings');
+        Route::post('/admins/update_settings', [AdminController::class, 'updateAccountSettings'])->name('admin.update_settings');
     });
 
 
