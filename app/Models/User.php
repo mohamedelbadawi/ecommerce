@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->created_at->diffForHumans();
     }
+
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
+    }
 }

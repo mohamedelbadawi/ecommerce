@@ -80,7 +80,11 @@
                 <i class="fa-solid fa-user-gear"></i>
                 <span>Admins</span></a>
         </li>
-
+        <li class="nav-item {{request()->routeIs('admin.address.*')?'active':''}}">
+            <a class="nav-link " href="{{route('admin.address.index')}}">
+                <i class="fa-solid fa-shop"></i>
+                <span>Addresses</span></a>
+        </li>
 
         @endrole
 
@@ -105,6 +109,11 @@
             <a class="nav-link " href="{{route('admin.product.index')}}">
                 <i class="fa-solid fa-shop"></i>
                 <span>Products</span></a>
+        </li>
+        <li class="nav-item {{request()->routeIs('admin.address.*')?'active':''}}">
+            <a class="nav-link " href="{{route('admin.address.index')}}">
+                <i class="fa-solid fa-shop"></i>
+                <span>Addresses</span></a>
         </li>
 
         @endrole

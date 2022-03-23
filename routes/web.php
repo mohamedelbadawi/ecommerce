@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,8 +74,10 @@ Route::prefix('admin')->group(function () {
         Route::get('products/edit/{product}', [ProductController::class, 'edit'])->name('admin.product.edit');
         Route::PATCH('products/update/{product}', [ProductController::class, 'edit'])->name('admin.product.update');
         Route::post('products/destroy/{product}', [ProductController::class, 'destroy'])->name('admin.product.delete');
-        Route::post('products/removeimage/{product}/{media}', [ProductController::class, 'removeImage'])->name('admin.product.remove_image');
-
+//        ----------------------------------------- Address ---------------------------------------------------------
+        Route::get('/addresses/', [AddressController::class, 'index'])->name('admin.address.index');
+        Route::get('/addresses/edit/{address}', [AddressController::class, 'edit'])->name('admin.address.edit');
+        Route::get('/addresses/delete/{address}', [AddressController::class, 'destroy'])->name('admin.address.delete');
 
     });
     Route::group(['middleware' => ['role:manager']], function () {
