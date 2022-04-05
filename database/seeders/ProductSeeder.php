@@ -7,6 +7,7 @@ use App\Models\Product;
 use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use phpDocumentor\Reflection\DocBlock\Tag;
 
 class ProductSeeder extends Seeder
 {

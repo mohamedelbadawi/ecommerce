@@ -1,15 +1,16 @@
 <?php
 
+use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\Auth\AdminLoginController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\backend\AddressController;
+use App\Http\Controllers\backend\CategoryController;
+use App\Http\Controllers\backend\CouponController;
+use App\Http\Controllers\backend\ProductController;
+use App\Http\Controllers\backend\TagController;
+use App\Http\Controllers\frontend\FrontendController;
+use App\Http\Controllers\frontend\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\AdminController;
-use App\Http\Controllers\TagController;
-use App\Http\Controllers\CouponController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\AddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +24,18 @@ use App\Http\Controllers\AddressController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//    ------------------------------------------- frontend ----------------------------------
+Route::get('/home', [FrontendController::class, 'index'])->name('home');
+Route::get('/products/{product}', [\App\Http\Controllers\frontend\ShopController::class, 'viewProductDetails'])->name('product.show');
+Route::get('/shop', [\App\Http\Controllers\frontend\ShopController::class, 'showShop'])->name('shop.show');
+Route::get('/cart', [FrontendController::class, 'viewCart'])->name('cart.view');
+
 
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
@@ -72,7 +79,7 @@ Route::prefix('admin')->group(function () {
         Route::post('products/store/', [ProductController::class, 'store'])->name('admin.product.store');
         Route::post('products/delete/{product}/{product_attribute}', [ProductController::class, 'deleteAttribute'])->name('admin.product.attribute.delete');
         Route::get('products/edit/{product}', [ProductController::class, 'edit'])->name('admin.product.edit');
-        Route::PATCH('products/update/{product}', [ProductController::class, 'edit'])->name('admin.product.update');
+        Route::PATCH('products/update/{product}', [ProductController::class, 'update'])->name('admin.product.update');
         Route::post('products/destroy/{product}', [ProductController::class, 'destroy'])->name('admin.product.delete');
 //        ----------------------------------------- Address ---------------------------------------------------------
         Route::get('/addresses/', [AddressController::class, 'index'])->name('admin.address.index');

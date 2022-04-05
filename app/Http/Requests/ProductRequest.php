@@ -36,6 +36,8 @@ class ProductRequest extends FormRequest
                     'tags' => 'required',
                 ];
             }
+
         }
+
     }
 }

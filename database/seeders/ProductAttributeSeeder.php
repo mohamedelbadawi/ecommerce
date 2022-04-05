@@ -24,7 +24,7 @@ class ProductAttributeSeeder extends Seeder
 
         for ($i = 1; $i <= 1000; $i++) {
             $products_attr[] = [
-                'product_id' => $products->random(),
+                'product_id' => $i,
                 'price' => $faker->numberBetween(5, 200),
                 'stock' => $faker->numberBetween(10, 100),
                 'size' => $faker->randomElement(['xs','s','m','l','xl','2xl','3xl']),

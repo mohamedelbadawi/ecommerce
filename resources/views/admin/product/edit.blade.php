@@ -4,7 +4,7 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @endsection
 @section('content')
-    <div class="card shadow mb-4">
+    <div class="card shadow mb-4 p-2">
         <div class="card-header py-3 d-flex">
             <h6 class="m-0 font-weight-bold text-primary">edit product</h6>
             <div class="ml-auto">
@@ -16,7 +16,6 @@
                 </a>
             </div>
         </div>
-        <div class="card-body">
 
             <form action="{{route('admin.product.update',$product->id)}}" method="post" enctype="multipart/form-data">
                 @method('PATCH')
@@ -81,13 +80,15 @@
                 <div class="row">
                     <div class="col-12">
                         <label for="tags">tags</label>
-                        <select name="tags[]" class="form-control select2" multiple="multiple">
+                        <select name="tags[]" class="form-control select2 @error('tags')border-danger @enderror" multiple="multiple">
                             @forelse($tags as $tag)
                                 <option value="{{ $tag->id }}"
                                         @if(in_array($tag->id,$productTags)) selected @endif >{{ $tag->name }}</option>
                             @empty
                             @endforelse
                         </select>
+                        @error('tags')<span class="text-danger">{{ $message }}</span>@enderror
+
                     </div>
                 </div>
                 <div class="row pt-4">
@@ -104,11 +105,12 @@
                 </div>
 
                 <div class="form-group pt-4">
-                    <button type="submit" name="submit" class="btn btn-primary">Add product</button>
+                    <button type="submit" name="submit" class="btn btn-primary">update product</button>
                 </div>
             </form>
         </div>
     </div>
+    <div class="card-body">
 
 @endsection
 
@@ -169,19 +171,7 @@
 
             })
 
-            $('.summernote').summernote({
-                tabSize: 2,
-                height: 200,
-                toolbar: [
-                    ['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture', 'video']],
-                    ['view', ['fullscreen', 'codeview', 'help']]
-                ]
-            })
+
         });
     </script>
 @endsection
